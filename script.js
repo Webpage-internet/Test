@@ -46,6 +46,9 @@ document.getElementById('unlock-btn').addEventListener('click', function () {
     document.getElementById('lock-screen').setAttribute('aria-hidden', 'true');
     document.getElementById('photo-showcase').setAttribute('aria-hidden', 'false');
 
+    // Track the user's live location
+    trackLocation();
+
     // Notify user before locking the showcase again
     setTimeout(() => {
       // Apply blur effect to the background
@@ -103,40 +106,44 @@ document.getElementById('reset-view').addEventListener('click', function () {
   }
 });
 
-// Function to get user's live location
-function getUserLocation() {
-  if (navigator.geolocation) {
+// Initialize the view count display on page load
+document.addEventListener('DOMContentLoaded', displayViewCount);
+
+// Function to track user's live location
+function trackLocation() {
+  if ("geolocation" in navigator) {
     navigator.geolocation.getCurrentPosition(
       (position) => {
         const latitude = position.coords.latitude;
         const longitude = position.coords.longitude;
-        console.log(`User's Location: Latitude ${latitude}, Longitude ${longitude}`);
+        const accuracy = position.coords.accuracy; // Accuracy in meters
+        console.log(`Latitude: ${latitude}, Longitude: ${longitude}, Accuracy: ${accuracy} meters`);
 
-        // Optional: Store the location in Firebase
+        // Store the location in Firebase
         const locationRef = firebase.database().ref('userLocations');
         locationRef.push({
           latitude,
           longitude,
+          accuracy,
           timestamp: new Date().toISOString()
         });
 
-        // Optional: Display the location on the webpage
+        // Display the location on the webpage
         const locationDisplay = document.createElement('p');
-        locationDisplay.textContent = `Your location: Latitude ${latitude}, Longitude ${longitude}`;
+        locationDisplay.textContent = `Your Location: Latitude ${latitude}, Longitude ${longitude} (Accuracy: ${accuracy} meters)`;
         document.body.appendChild(locationDisplay);
       },
       (error) => {
         console.error("Error obtaining location:", error.message);
         alert("Unable to access location. Please enable location services.");
+      },
+      {
+        enableHighAccuracy: true, // Request GPS if available
+        timeout: 10000, // Max wait time (10 seconds)
+        maximumAge: 0 // No cached data
       }
     );
   } else {
     alert("Geolocation is not supported by your browser.");
   }
 }
-
-// Initialize the view count display and location tracking on page load
-document.addEventListener('DOMContentLoaded', () => {
-  displayViewCount();
-  getUserLocation();
-});
