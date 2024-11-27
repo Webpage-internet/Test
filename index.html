@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Photo Showcase</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+</head>
+<body>
+  <!-- Lock Screen -->
+  <div id="lock-screen" aria-hidden="false">
+    <h1>Ai Future Husband Photo Generating Showcase Locked</h1>
+    <p>What is your future husband's name to Generate Image By Ai?</p>
+    <input type="text" id="password" placeholder="Enter name" aria-label="Enter future husband's name">
+    <button id="unlock-btn" aria-label="Unlock photo showcase">Unlock</button>
+    <p id="error-msg" aria-live="polite"></p>
+  </div>
+
+  <!-- View count and reset button in top-right corner -->
+  <div id="view-count" class="view-count">
+    View Count: <span id="count-display">0</span>
+  </div>
+  <button id="reset-view" class="reset-view">Reset View</button>
+
+  <!-- Image Showcase -->
+  <div id="photo-showcase" class="hidden" aria-hidden="true">
+    <div class="love-background"></div>
+
+    <!-- Top Image in Love Frame -->
+    <div class="top-image-frame">
+      <img src="https://i.postimg.cc/GtxpM7br/Picsart-24-04-15-09-38-40-304.jpg" alt="Top Image with Love Frame">
+    </div>
+
+    <!-- Image Showcase -->
+    <div class="frames-container">
+      <div class="frame"><img src="https://i.postimg.cc/43sFfrXV/IMG20240109105437.jpg" alt="Scenic View 1"></div>
+      <div class="frame"><img src="https://i.postimg.cc/d1SW93rj/IMG20240131152820-2.jpg" alt="Scenic View 2"></div>
+      <div class="frame"><img src="https://i.postimg.cc/50t7vLYt/IMG20240213204111.jpg" alt="Scenic View 3"></div>
+      <div class="frame"><img src="https://i.postimg.cc/3NdqMmYq/IMG-20241124-143756.jpg" alt="Scenic View 4"></div>
+      <div class="frame"><img src="https://i.postimg.cc/3JWh70tY/IMG-20241124-144122.jpg" alt="Scenic View 5"></div>
+      <div class="frame"><img src="https://i.postimg.cc/JzkWHVwF/Snapchat-1041908724.jpg" alt="Scenic View 6"></div>
+      <div class="frame"><img src="https://i.postimg.cc/tJML7DBy/Snapchat-1111952413.jpg" alt="Scenic View 7"></div>
+      <div class="frame"><img src="https://i.postimg.cc/NGChNfBV/Snapchat-1335015785.jpg" alt="Scenic View 8"></div>
+      <div class="frame"><img src="https://i.postimg.cc/mr3fVYgN/Snapchat-1356911451.jpg" alt="Scenic View 9"></div>
+      <div class="frame"><img src="https://i.postimg.cc/MTWkLnck/Snapchat-1953272203.jpg" alt="Scenic View 10"></div>
+      <div class="frame"><img src="https://i.postimg.cc/3Jksz5ww/Snapchat-528176719.jpg" alt="Scenic View 11"></div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
