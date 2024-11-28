@@ -147,6 +147,7 @@ body {
   box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.2);
 }
 
+
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -156,4 +157,82 @@ body {
     opacity: 1;
     transform: scale(1);
   }
+}
+/* Horizontal Slider Styles */
+.slider-container {
+  margin: 20px auto;
+  overflow: hidden;
+  width: 100%;
+  max-width: 90%; /* Adjust based on your desired width */
+  position: relative;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+}
+
+.slider-title {
+  font-size: 24px;
+  margin-bottom: 10px;
+  color: #ff4c4c;
+  text-align: center;
+  font-weight: bold;
+}
+/* Highlight Title with Hearted Frame */
+.heart-frame {
+  display: inline-block;
+  position: relative;
+  padding: 10px 6px;
+  font-size: 28px;
+  color: #FF0000;
+  font-weight: bold;
+  background: linear-gradient(135deg, #ffe5ec, #ffccd5); /* Pinkish gradient */
+  border: 2px solid #ff4c4c; /* Outer heart border */
+  border-radius: 50px;
+  text-shadow: 2px 2px 4px rgba(255, 105, 180, 0.8); /* Glowing text effect */
+  box-shadow: 0px 4px 10px rgba(255, 105, 180, 0.5); /* Heart glow */
+}
+
+/* Add decorative hearts around the title */
+.heart-frame::before,
+.heart-frame::after {
+  content: "❤️";
+  font-size: 20px;
+  position: absolute;
+  color: #ff4c4c;
+}
+
+.heart-frame::before {
+  left: -25px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.heart-frame::after {
+  right: -25px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.slider {
+  display: flex;
+  overflow-x: scroll;
+  scroll-behavior: smooth;
+}
+
+.slider::-webkit-scrollbar {
+  display: none; /* Hide the scrollbar */
+}
+
+.slider img {
+  width: 200px;
+  height: auto;
+  margin: 0 10px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  flex-shrink: 0; /* Prevent images from shrinking */
+}
+
+.slider-track {
+  display: flex;
+  gap: 15px; /* Adds spacing between images */
+  align-items: center;
 }
